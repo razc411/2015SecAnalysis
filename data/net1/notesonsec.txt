@@ -1,0 +1,323 @@
+HOSTS
+- found by cross referencing wtmp logs, ethernet configs and other logs
+
+24.86.161.95 - public IP of this setup
+24.84.224.154 - honeypot's owner's home machine
+10.10.10.1 - firewall
+10.10.10.253 - WS
+10.10.10.254 - FS
+
+
+NOTABLE
+5/27/14 - many suspicious events
+5/30/14 - promiscuous mode turns off and on at 4:03 am
+		- failed attempts for ssh from 10.10.10.1 also occur at 4:06~ am
+
+Possible penetration points
+	Wordpress
+	PhpMyAdmin (what version, 2.5.6 to 2.8.2 vulnerble to ZmEu attacks)
+	ZeMu - BitDefender has same attack, matches signature
+		"GET /w00tw00t.at.blackhats.romanian.anti-sec:) HTTP/1.1"
+
+		"GET /muieblackcat HTTP/1.1" 404 "GET //scripts/setup.php HTTP/1.1" 301
+
+		"GET //admin/scripts/setup.php HTTP/1.1"
+
+		"GET //admin/pma/scripts/setup.php HTTP/1.1" 404
+
+		"GET //admin/phpmyadmin/scripts/setup.php HTTP/1.1" 404
+
+		"GET //db/scripts/setup.php HTTP/1.1" 404
+Know Penetration
+	SSHD
+
+Notes
+	CUPS nothing of note, any action occured long before compromise
+
+==SECURE LOGS===================================================================================
+10.10.10.1 most likely user terminal -sshd(root) - may be compromised
+10.10.10.2 -sshd(root)
+	first  password 5/15/14 once, rest accepted
+142.232.112.249 -sshd(root) - only successful - internal bcit ip
+10.10.10.253 - most likely honeypot
+
+5/17/14: bad username 
+5/19/14: /usr/sbin/system-config-network ran (most likely firewall config)
+5/26/14: failed passwords for 10.10.10.1 start occuring
+5/27/14 -> 5/28/14: several did not recieve identification string from 10.10.10.252
+	-> points at an invalid ssh session, denial of service
+	-> may in turn mean password attempts
+	-> may be software issue, but unlikely with singular timing
+5/29/14: many session closed calls for sshd
+5/28/14: two attempts with failed passwords from 10.10.10.1 repeating each day until 6/24/14
+	-> always occur around 4:06~ AM
+	-> occasional third access at a different time, at 6 or 8 PM that
+6/24/14: success from 10.10.10.1 on ssh, failed attempts stop here
+==================================================================================================
+
+
+==MESSAGE LOGS====================================================================================
+5/27/14: DHCPREQUEST on eth0 to 10.10.10.1 port 67 every minute starting at 5:22 AM to 7:48 AM
+5/27/14: DHCPREQUEST on eth0 to 255.255.255.255 port 67 every minute starting 7:48 AM to 8:33 AM
+5/27/14: resolve.conf changed by /sbin/dhclient-script at 8:33 AM
+	-> next actions most likely a result of script
+		-> address record for 10.10.10.253 eth0 withdrawn by avahi-daemon
+		-> left mdns multicast on eth0.ipv4 with address 10.10.10.253 by avhi-daemon
+		-> mdns mcast join called but no local address (ad)
+		-> eth0.ipv4 no longer relevant for mdns
+5/27/14: DHCPDISCOVER on eth0 255.255.255.255 port 67 several times
+5/27/14: TSO disabled (segmentation of buffers on TCP)
+5/27/14: All above occured between 8:33 AM and 8:34 AM, final message at 8:34 AM is No DHCPOFFERS received
+5/27/14: 2:27 PM computer restarted, attempt to restorecond on resolve.conf - invalid arg
+5/27/14: 2 minutes later, computer is started
+5/27/14: during startup, 
+		-> socket() failed: address family not supported by protocol from (ad)
+		-> joined multicast group 10.10.10.253
+5/27/14: 4:56 PM DHCPREQUEST on eth0 to 10.10.10.1 port 67 - automatic rediscovery here
+		-> DHCPACK from 10.10.10.1
+		-> bound to 10.10.10.253, renewal = 10316 secs
+		-> these 3 messages repeat every 3 hours till 10:36 PM
+5/27/14: 11:44 PM: (ad) recieves invalid query packet 20 times in quick succession
+5/27/14: 11:50 PM: (ad): invalid response packet from 10.10.10.251 25+ times
+5/28/14: 12:03 AM: more invalid responses from 10.10.10.251
+5/28/14: 12:36 invalid query packet 35 times
+5/28/14: 12:42 invalid response 10.10.10.251
+5/28/14: 12:53 invalid query packet 18 times
+5/28/14: 12:56 invalid response 10.10.10.251
+5/28/14: 1:03 invalid query 21 times
+5/28/14: more automatic rediscovery 
+5/29/14: net-snmp-utils-5.3.2.2-22.el5_10.1.i386 installed (Network monitoring program)
+5/30/14: eth0 entered promsiscuous mode every day at 4:03 AM till 6/24/14 and then quickly left it within 2 seconds
+6/1/14: image "Purchased" mounted 8:55 PM at /dev/hdb
+=====================================================================================================
+
+
+==ACCESS LOGS========================================================================================
+5/7/14 -> 6/12/14: several attempts to get a setup.php script - hacking attempt -  e.g. "GET /MySQLAdmin/scripts/setup.php HTTP/1.1" 404 301 "-" "-"
+				-> tries to place setup.php into 
+				/phpmyadmin/scripts
+				/pma/scripts/
+				/myadmin/scripts/
+				/mysqladmin/scripts
+				/sql/scripts
+				/web/scripts
+				/websql/scripts
+				moves into prefixing with // instead of /
+5/15/14: 10:44 AM request becomes "GET /phpMyAdmin/scripts/setup.php HTTP/1.1" 404 301 "-" "ZmEu" : ZmEu = backdoor software
+		and returns to what it was previously doing after doing 9 get requests in 5 different directories
+			phpMyAdmin, pma, phpmyadmin, myadmin, MyAdmin
+5/15/14: GET /w00tw00t.at.blackhats.romanian.anti-sec:) HTTP/1.1" 404 314 "-" "ZmEu" - ZmEu has compromised the system and is doing gets
+			-> compromised MIT server doing mass exploits with the blackhole exploit pack, related to this GET
+			-> These GETS are not successful, all result in a 404, failed attack
+5/8/14: Gets to http://cirt.net/rfiinc.txt? which contains the line <?php phpinfo(); ?> - stuff here most likely user based and irrelevant
+			-> tests most likely done by Nikto 
+			-> several gets done to 96.49.0.75 by wordpress admin
+6/12/14: calls get setup.php on XAMPP
+6/12/14: 10:25:58 AM ZmEu reappears, continues every second till 10:28:01 AM 
+		-> last get is to /scripts/setup.php
+======================================================================================================
+
+
+==APACHE LOGS=========================================================================================
+5/8/14: Many attempted attacks, random gets for non existent files
+		-> from 3:20 PM to 3:27 PM from 24.84.224.154
+		-> 3:22 PM different attack - GET shopdisplayproducts.asp?id=1&cat=<script>alert(document.cookie)</script>
+			-> invalid URI in response
+				-> GET done by 94.102.49.31, 69.174.245.163, 89.248.160.212, 178.21.112.81, 80.82.64.42, 61.19.247.226, 61.147.67.88
+					- all failed
+			-> File does not exist, favicon.ico
+				GETS from 96.49.43.145, 173.180.6.172, 24.85.119.149, 94.49.43.145, 24.84.224.154,, 142.232.163.8.. many more
+				from 5/3/14 to 6/25/14 - all failed
+			-> many more failed stat attacks on http
+========================================================================================================
+
+
+===CRON LOGS============================================================================================
+5/28/14: new cron jobs most likely added
+========================================================================================================
+
+
+==ERROR LOGS============================================================================================
+Nothing much, seems like a lot of listening at 127.0.0.1:631 for printers
+========================================================================================================
+
+
+==MAIL LOGS=============================================================================================
+Nothing except sending of mail to root from root
+SENDMAIL==
+May 6 18:12:14 fs sendmail[4727]: s471CEUE004725: to=<admin@localhost.net>, ctladdr=<apache@localhost.localdomain> (48/48), delay=00:00:00, xdelay=00:00:00, mailer=esmtp, pri=120801, relay=ms15341115.msv1.invalid.outlook.com., dsn=5.1.2, stat=Host unknown (Name server: ms15341115.msv1.invalid.outlook.com.: host not found)
+	- may be of interest as far as mail goes, 5/6/14
+========================================================================================================
+
+
+==SSL HTTP LOGS============================================================================================
+- many unsuccessful get requests
+- successful get requests starting at 6/5/14
+	24.85.119.149 - - [24/Jun/2014:19:53:04 -0700] "GET / HTTP/1.1" 200 6118
+	66.240.236.119 - - [20/Jun/2014:04:52:05 -0700] "GET / HTTP/1.1" 200 6118 , [20/Jun/2014:04:52:09 -0700] "quit" 200 6118
+	142.232.112.249 - - [12/Jun/2014:18:00:19 -0700] "OPTIONS / HTTP/1.1" 200 6118
+	24.85.119.149 - - [24/Jun/2014:19:53:09 -0700] "OPTIONS / HTTP/1.1" 200 6118
+	142.232.112.249 - - [05/Jun/2014:18:55:18 -0700] "GET /wp-login.php?redirect_to=https%3A%2F%2F24.86.161.95%2Fwp-admin%2Foptions-general.php%3Fsettings-updated%3Dtrue&reauth=1 HTTP/1.1" 200 2153
+	142.232.112.249 - - [05/Jun/2014:18:55:18 -0700] "GET /wp-admin/options-general.php?settings-updated=true HTTP/1.1" 302 
+		- 142.232.112.249 most likely has admin access to wordpress
+5/28/14: 10.10.10.252 - - [28/May/2014:07:59:05 -0700] "GET / HTTP/1.0" 200 6043
+			-successful from suspicious IP
+[warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?) appears quite a bit
+	-review ssl_request log when internet is back
+===========================================================================================================
+
+
+===================NON_TIMESTAMPED_LOGS====================================================================
+etc.fw.sysconfig/networkscripts/ifcfg-eth1 contains entry for 10.10.10.1
+fw hostname ipv4 forwards, most likely to 10.10.10.1
+===========================================================================================================
+
+
+==SNORTSNARFS FOR FW=======================================================================================
+5/17/14: info web bug 0x0 gif attempt, 12.129.210.71:80 to server
+
+
+==ALERT LOGS===================
+66.64.176.2 25/Jun/2014
+72.220.210.78 - - 
+	[06/Jun/2014:11:40:35 -0700] "GET /HNAP1/ HTTP/1.1" 404 281 "http://24.86.161.95/" "Mozilla/5.0 (X11; Linux i686; U;rv: 1.7.13) Gecko/20070322 Kazehakase/0.4.4.1"
+	- attempt at D-LINK exploit
+
+108.166.175.150
+	- [06/Jun/2014:02:28:54 -0700] "GET /user/soapCaller.bs HTTP/1.1" 404 293 "-" "Morfeus Fucking Scanner"
+		- reconnasince on PHP
+
+116.122.36.248
+	- south korea
+	- attacks
+		6/24/14: SERVER-WEBAPP PHP-CGI remote file include attempt 
+
+		- most likely compromised
+
+118.71.82.220
+	- vietnam
+	- host:ip-address-pool-xxx-fpt.vn
+
+    Related IP adresses
+	IP address	Type	Host name	DNS state
+	118.69.135.96	 A 	fpt.vn	OK
+	210.245.0.172	 MX 	isp-mta1.fpt.vn	OK
+	210.245.0.168	 MX 	isp-mta4.fpt.vn	OK
+	69.50.231.175	 MX 	tarbaby.junkemailfilter.com	
+	210.245.0.131	 NS 	dns1.fpt.vn	
+	210.245.0.10	 NS 	dns2.fpt.vn	
+	210.245.86.239	 NS 	dns-a.fpt.vn	OK
+	118.69.166.10	 NS 	dns-b.fpt.vn	OK
+100%
+	-attacks 
+		6/20/14: SERVER-WEBAPP PHP-CGI remote file include attempt 
+		sapi/cgi/cgi_main.c in PHP before 5.3.13 and 5.4.x before 5.4.3, when configured as a CGI script (aka php-cgi), does not properly handle query strings that contain a %3D sequence but no = (equals sign) character, which allows remote attackers to execute arbitrary code by placing command-line options in the query string, related to lack of skipping a certain php_getopt for the 'd' case. NOTE: this vulnerability exists because of an incomplete fix for CVE-2012-1823.
+
+		- CURRENT PHP VERSION 5.1.6-44, most likely compromised
+
+202.53.8.82
+	-india
+	-host: mail.report.beamtele.com
+
+    Related IP adresses
+	IP address	Type	Host name	DNS state
+	123.176.40.18	 A 	beamtele.com	OK
+	202.53.8.80	 MX 	mail.beamtele.com	OK
+	202.53.8.4	 NS 	ns1.beamtele.in	OK
+	202.53.8.5	 NS 	ns2.beamtele.in	OK
+
+	-attacks
+		6/6/14: POLICY-OTHER Adobe ColdFusion admin interface access attempt x 1
+
+142.232.112.249
+	-canada
+	-host: bcit
+
+	Related IP adresses
+	IP address	Type	Host name	DNS state
+	216.146.46.10	 A 	bcit.ca	OK
+	216.146.46.11	 A 	bcit.ca	OK
+	207.46.163.215	 MX 	bcit-ca.mail.protection.outlook.com	
+	142.232.76.200	 NS 	ns1.bcit.ca	OK
+	142.232.76.191	 NS 	ns2.bcit.ca	OK
+	142.232.110.110	 NS 	ns3.bcit.ca	OK
+	208.78.70.8	 NS 	ns1.p08.dynect.net	OK
+	2001:500:90:1::8	 NS 	ns1.p08.dynect.net	Not OK  ( 208.78.70.8 )
+	204.13.250.8	 NS 	ns2.p08.dynect.net	OK
+	208.78.71.8	 NS 	ns3.p08.dynect.net	OK
+	2001:500:94:1::8	 NS 	ns3.p08.dynect.net	Not OK  ( 208.78.71.8 )
+	204.13.251.8	 NS 	ns4.p08.dynect.net	OK
+
+	-attacks
+		6/5/14: SERVER-OTHER OpenSSL TLSv1.1 heartbeat read overrun attempt 
+			The heartbeat consists of a request packet including a payload; the other side sends a response containing the same payload (plus some other padding).
+			In the packet sent by the attacker there is a payload size indicator, which is then used for sending the response packet back. Due to the fact that packet that was received is much smaller than specified in the payload size, the packet response function reads and sends the memory after the packet data.
+			This allows attacker to read up to 64kb memory without a trace (heartbeat is not logged) and can be repeated many times to increase the probability of containing valuable information.
+
+178.216.51.36
+	-sweden
+	-attacks
+		6/9/14: POLICY-OTHER Adobe ColdFusion admin interface access attempt 
+			- administrator.cfc in Adobe ColdFusion 9.0, 9.0.1, 9.0.2, and 10 allows remote attackers to bypass authentication and possibly execute arbitrary code by logging in to the RDS component using the default empty password and leveraging this session to access the administrative web interface, as exploited in the wild in January 2013.
+
+116.10.191.169
+	-china
+	-5/24/14: ssh log in attacks, many password attempts on root with a failed password
+
+60.169.4.157
+	-china
+	-5/24/14: ssh malformed authentication attacks
+
+In depth on 142.**** attacks
+	- appears to be a host on BCIT
+	- first suspicious action occurs on the 22nd of may
+	5/24/14: 2 suspicious ssh attempts like the 27 ones, but 5 seconds apart - most likely benign
+	5/27/14: wordpress brute attempt for specific author#* exploit
+		author1->10 attempted as a get
+			-attack unsuccessful, no 302 HTTP code returned
+			-author1 recieved a HTTP 200, was successful on this attempt but recieved no 302
+			-continued making attempts on SSH as root after this, failing
+			-attempts "GET /?author=1  and GET /?autho=1 both returned with STATUS OK
+			-attempts GET /theme.php?id=2, returned with failure 404
+
+	5/27/14: appear to have several successful entries into SSH on the firewall machine, 10.10.10.1 compromised
+	
+	CHECK OUT IN PACKETS - SEE WHAT REDIRECTION LINK IS=====================
+	
+	142.232.112.249 - - [29/May/2014:16:36:32 -0700] "GET /wp-content/plugins HTTP/1.1" 301 322 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0) Gecko/20100101 Firefox/9.0"
+
+	142.232.112.249 - - [29/May/2014:16:36:32 -0700] "GET /wp-signup.php HTTP/1.1" 302 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0) Gecko/20100101 Firefox/9.0"
+
+74.117.56.130 - - [25/Jun/2014:16:22:56 -0700] "GET /vtigercrm/ HTTP/1.1" 404 286
+	- failed attempts for vtigercm server
+
+	========================================================================
+
+	5/29/14: 4PM, several scan attempts for word press, trying to get various config files
+			PHP Fatal error:  Call to undefined function get_header()
+				- reveals full path of the wordpress site, reconnasince
+	6/5/14: tries to use heartbleed vulnerbility on 10.10.10.253
+		6:51:38.000 PM	- gets the sitemap 
+	continues heartbleed attempts and various wordpress vulnerbilities
+	most likely never gains entry, quits attempting after june 12
+
+In depth on 10.10.10.1
+	- the firewall of the system
+	- first evidence of compromise on 5/22/14 4:07 AM
+		- daily attempts on ssh of main system at this time
+		- some accepted passwords for root, but most likely from actual user, occurs generally in the evening
+		- may have gotten into main system around 6/24/14
+
+May 23 22:35:08 fw sshd[3903]: reverse mapping checking getaddrinfo for 215.51.174.61.dial.wz.zj.dynamic.163data.com.cn failed - POSSIBLE BREAK-IN ATTEMPT!
+
+
+64.70.19.33 - united states june 25 -> wordpress server
+	10.10.10.1 - installed wireshark and libsmi with root access
+	next moment 64 connects to the server on the root account
+	- may have had access to 10.10.10.1
+	- used the installation of wireshark/libsmi to generate the root pwd and gained access through 64.70.19.33
+162.253.66.77 - - [25/Jun/2014:10:07:21 -0700] "GET /rutorrent HTTP/1.0" 404 295 "-" "Chrome 14.2.0 Mozilla (Gecko)Accept: */*"
+
+114.112.100.51 - - [25/Jun/2014:14:18:26 -0700] "GET /admin/config.php HTTP/1.0" 404 292
+
+66.64.176.2 - - [25/Jun/2014:14:40:42 -0700] "\x80w\x01\x03\x01" 200 6094 "-" "-"

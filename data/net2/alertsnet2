@@ -1,0 +1,5 @@
+06/04-17:16:15.150140  [**] [1:30524:2] SERVER-OTHER OpenSSL TLSv1.1 heartbeat read overrun attempt [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 142.232.66.1:42180 -> 192.168.0.10:443
+06/04-17:16:15.184200  [**] [1:30516:8] SERVER-OTHER OpenSSL TLSv1.1 large heartbeat response - possible ssl heartbleed attempt [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.0.10:443 -> 142.232.66.1:42180
+06/04-17:16:15.200095  [**] [1:30524:2] SERVER-OTHER OpenSSL TLSv1.1 heartbeat read overrun attempt [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 142.232.66.1:42180 -> 192.168.0.10:443
+06/04-17:16:15.200095  [**] [1:30512:6] SERVER-OTHER OpenSSL TLSv1.1 heartbeat read overrun attempt [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 142.232.66.1:42180 -> 192.168.0.10:443
+06/04-17:16:15.205509  [**] [1:30787:3] SERVER-OTHER OpenSSL TLSv1.1 large heartbeat response - possible ssl heartbleed attempt [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.0.10:443 -> 142.232.66.1:42180

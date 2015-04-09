@@ -1,0 +1,21 @@
+--
+[Header part]
+Record number       : 1
+Time generated      : Mon Jun  2 20:08:52 2014 local (Tue Jun  3 03:08:52 2014 GMT)
+Event ID            : 517 (Audit Log Cleared)
+Event type          : 8 (Success Audit)
+Event category      : 1 (System)
+
+[Body part]
+Event source        : Security
+Computer            : CHONG
+Sid                 : S-1-83886080-18 (unresolved)
+
+[Strings part]
+String              : SYSTEM
+String              : NT AUTHORITY
+String              : (0x0,0x3E7)
+String              : Administrator
+String              : CHONG
+String              : (0x0,0xAD60)
+

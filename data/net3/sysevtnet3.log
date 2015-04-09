@@ -1,0 +1,88 @@
+--
+[Header part]
+Record number       : 1
+Time generated      : Tue Jun  3 21:51:29 2014 local (Wed Jun  4 04:51:29 2014 GMT)
+Event ID            : 2147489654 (no description)
+Event type          : 4 (Information)
+Event category      : 0 (None)
+
+[Body part]
+Event source        : EventLog
+Computer            : CHONG
+Sid                 : N/A
+
+--
+[Header part]
+Record number       : 2
+Time generated      : Thu Jun 26 08:50:40 2014 local (Thu Jun 26 15:50:40 2014 GMT)
+Event ID            : 2147489657 (no description)
+Event type          : 4 (Information)
+Event category      : 0 (None)
+
+[Body part]
+Event source        : EventLog
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 5.0
+String              : 2195
+String              : Service Pack 3
+String              : Uniprocessor Free
+
+--
+[Header part]
+Record number       : 3
+Time generated      : Thu Jun 26 08:50:40 2014 local (Thu Jun 26 15:50:40 2014 GMT)
+Event ID            : 2147489653 (no description)
+Event type          : 4 (Information)
+Event category      : 0 (None)
+
+[Body part]
+Event source        : EventLog
+Computer            : CHONG
+Sid                 : N/A
+
+--
+[Header part]
+Record number       : 4
+Time generated      : Thu Jun 26 08:50:26 2014 local (Thu Jun 26 15:50:26 2014 GMT)
+Event ID            : 2147745796 (no description)
+Event type          : 2 (Warning)
+Event category      : 0 (None)
+
+[Body part]
+Event source        : E100B
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 
+String              : Intel(R) PRO/100 VE Network Connection
+
+--
+[Header part]
+Record number       : 5
+Time generated      : Thu Jun 26 08:50:59 2014 local (Thu Jun 26 15:50:59 2014 GMT)
+Event ID            : 3221225577 (no description)
+Event type          : 1 (Error)
+Event category      : 0 (None)
+
+[Body part]
+Event source        : SMTPSVC
+Computer            : CHONG
+Sid                 : N/A
+
+--
+[Header part]
+Record number       : 6
+Time generated      : Thu Jun 26 08:50:59 2014 local (Thu Jun 26 15:50:59 2014 GMT)
+Event ID            : 3221225577 (no description)
+Event type          : 1 (Error)
+Event category      : 0 (None)
+
+[Body part]
+Event source        : W3SVC
+Computer            : CHONG
+Sid                 : N/A
+

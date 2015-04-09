@@ -1,0 +1,5 @@
+My first go at analyzing compromised networks!
+
+The data here covers 3 networks that were set up as honeypots, did this pretty blindly.
+
+Used splunk, snort and an array of other tools to perform my analysis.

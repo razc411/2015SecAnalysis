@@ -1,0 +1,9 @@
+06/12-07:52:27.848520  [**] [1:30280:2] SERVER-WEBAPP FreePBX config.php remote code execution attempt [**] [Classification: Attempted Administrator Privilege Gain] [Priority: 1] {TCP} 184.172.140.59:30834 -> 192.168.10.19:80
+06/12-16:31:09.354311  [**] [1:30280:2] SERVER-WEBAPP FreePBX config.php remote code execution attempt [**] [Classification: Attempted Administrator Privilege Gain] [Priority: 1] {TCP} 184.172.140.59:52564 -> 192.168.10.19:80
+06/06-08:59:11.605866  [**] [1:25975:2] POLICY-OTHER Adobe ColdFusion admin interface access attempt [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 202.53.8.82:48074 -> 192.168.10.19:80
+06/07-17:11:26.160192  [**] [1:22063:9] SERVER-WEBAPP PHP-CGI remote file include attempt [**] [Classification: Attempted Administrator Privilege Gain] [Priority: 1] {TCP} 185.56.80.125:42212 -> 192.168.10.19:80
+06/07-17:11:26.528501  [**] [1:22063:9] SERVER-WEBAPP PHP-CGI remote file include attempt [**] [Classification: Attempted Administrator Privilege Gain] [Priority: 1] {TCP} 185.56.80.125:42466 -> 192.168.10.19:80
+06/07-17:11:26.860695  [**] [1:22063:9] SERVER-WEBAPP PHP-CGI remote file include attempt [**] [Classification: Attempted Administrator Privilege Gain] [Priority: 1] {TCP} 185.56.80.125:42634 -> 192.168.10.19:80
+06/07-17:11:27.186010  [**] [1:22063:9] SERVER-WEBAPP PHP-CGI remote file include attempt [**] [Classification: Attempted Administrator Privilege Gain] [Priority: 1] {TCP} 185.56.80.125:42803 -> 192.168.10.19:80
+06/07-17:11:27.519325  [**] [1:22063:9] SERVER-WEBAPP PHP-CGI remote file include attempt [**] [Classification: Attempted Administrator Privilege Gain] [Priority: 1] {TCP} 185.56.80.125:42966 -> 192.168.10.19:80
+06/09-00:51:34.614669  [**] [1:25975:2] POLICY-OTHER Adobe ColdFusion admin interface access attempt [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 178.216.51.36:32876 -> 192.168.10.19:80

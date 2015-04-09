@@ -1,0 +1,244 @@
+--
+[Header part]
+Record number       : 1
+Time generated      : Mon Jun  2 20:09:19 2014 local (Tue Jun  3 03:09:19 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : S-1-83886080-21-117609710-1035525444-839522115-500 (Administrator)
+
+[Strings part]
+String              : 8128
+String              : Using 'xpstar.dll' version '2000.80.194' to execute extended stored procedure 'sp_MSgetversion'.
+
+
+--
+[Header part]
+Record number       : 2
+Time generated      : Thu Jun 26 08:50:46 2014 local (Thu Jun 26 15:50:46 2014 GMT)
+Event ID            : 1073745921 (no description)
+Event type          : 4 (Information)
+Event category      : 1 (System)
+
+[Body part]
+Event source        : MSDTC
+Computer            : CHONG
+Sid                 : N/A
+
+--
+[Header part]
+Record number       : 3
+Time generated      : Thu Jun 26 08:50:50 2014 local (Thu Jun 26 15:50:50 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17052
+String              : Microsoft SQL Server  2000 - 8.00.194 (Intel X86) 
+	Aug  6 2000 00:57:48 
+	Copyright (c) 1988-2000 Microsoft Corporation
+	Standard Edition on Windows NT 5.0 (Build 2195: Service Pack 3)
+
+
+
+--
+[Header part]
+Record number       : 4
+Time generated      : Thu Jun 26 08:50:50 2014 local (Thu Jun 26 15:50:50 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17104
+String              : Server Process ID is 656.
+
+
+--
+[Header part]
+Record number       : 5
+Time generated      : Thu Jun 26 08:50:51 2014 local (Thu Jun 26 15:50:51 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17162
+String              : SQL Server is starting at priority class 'normal'(1 CPU detected).
+
+
+--
+[Header part]
+Record number       : 6
+Time generated      : Thu Jun 26 08:50:52 2014 local (Thu Jun 26 15:50:52 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17124
+String              : SQL Server configured for thread mode processing.
+
+
+--
+[Header part]
+Record number       : 7
+Time generated      : Thu Jun 26 08:50:52 2014 local (Thu Jun 26 15:50:52 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17125
+String              : Using dynamic lock allocation. [2500] Lock Blocks, [5000] Lock Owner Blocks.
+
+
+--
+[Header part]
+Record number       : 8
+Time generated      : Thu Jun 26 08:51:02 2014 local (Thu Jun 26 15:51:02 2014 GMT)
+Event ID            : 1073742827 (no description)
+Event type          : 4 (Information)
+Event category      : 1 (System)
+
+[Body part]
+Event source        : Microsoft Search
+Computer            : CHONG
+Sid                 : N/A
+
+--
+[Header part]
+Record number       : 9
+Time generated      : Thu Jun 26 08:51:02 2014 local (Thu Jun 26 15:51:02 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17834
+String              : Using 'SSNETLIB.DLL' version '8.0.194'.
+
+
+--
+[Header part]
+Record number       : 10
+Time generated      : Thu Jun 26 08:51:04 2014 local (Thu Jun 26 15:51:04 2014 GMT)
+Event ID            : 3221244483 (no description)
+Event type          : 2 (Warning)
+Event category      : 8 (Directory service access)
+
+[Body part]
+Event source        : MSSQLServer
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : (SpnRegister) : Error 1231
+
+--
+[Header part]
+Record number       : 11
+Time generated      : Thu Jun 26 08:51:04 2014 local (Thu Jun 26 15:51:04 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 19013
+String              : SQL server listening on TCP, Shared Memory, Named Pipes.
+
+
+--
+[Header part]
+Record number       : 12
+Time generated      : Thu Jun 26 08:51:04 2014 local (Thu Jun 26 15:51:04 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 19013
+String              : SQL server listening on 127.0.0.1:1433.
+
+
+--
+[Header part]
+Record number       : 13
+Time generated      : Thu Jun 26 08:51:04 2014 local (Thu Jun 26 15:51:04 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17126
+String              : SQL Server is ready for client connections
+
+
+--
+[Header part]
+Record number       : 14
+Time generated      : Thu Jun 26 08:51:08 2014 local (Thu Jun 26 15:51:08 2014 GMT)
+Event ID            : 3221242527 (no description)
+Event type          : 4 (Information)
+Event category      : 2 (Logon/Logoff)
+
+[Body part]
+Event source        : MSSQLSERVER
+Computer            : CHONG
+Sid                 : N/A
+
+[Strings part]
+String              : 17052
+String              : Recovery complete.
+
+
